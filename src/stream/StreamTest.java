@@ -22,6 +22,9 @@ public class StreamTest {
                 return integer + integer2;
             }
         }).get();
+        // lambda表达式写法
+        Integer integer1 = integers.stream().filter(i -> i < 100).map(i -> i * 2).reduce((a, b) -> a + b).get();
         System.out.println("sum is " + integer);
+        System.out.println("sum is " + integer1);
     }
 }

@@ -3,6 +3,8 @@ package jvm.minor.gc;
 /**
  * -Xms20M -Xmx20M -Xmn10M -verbose:gc -XX:+PrintGCDetails -XX:SurvivorRatio=8 -XX:+UseSerialGC
  * java堆固定为20M，新生代10M,剩下的10M为老年代，新生代中Eden区和Survivor区空间比为8：1
+ * 每次GC时，新生代里存活的对象会被移动到survivor的form里，如果超过大小,则进入到老年代
+ * survivor的from和to是复制算法要用的两块大小一样的区域，所以新生代可用的空间大小是eden大小+survivor from的大小
  * -XX:PretenureSizeThreshold=3145728 这个参数不能直接写3M 超过这个大小直接进入老年代
  * @Author zp
  * @create 2019/12/25 15:17

@@ -1,5 +1,11 @@
 package bitmap;
 
+/**
+ * 对于int类型的百整数移位a<<b，系统先用b对32求余，
+ * 得到的结果才是真正移位的位数
+ *
+ * 对于long类型的整数移位，问同上，不过是对64求余
+ */
 public class BitMapTest {
     public static void main(String[] args) {
         int a = 1;
@@ -29,5 +35,10 @@ public class BitMapTest {
         System.out.println(1L<<128);
         System.out.println(1L<<129);
         System.out.println(1L<<257);
+        System.out.println("------------");
+        System.out.println(1<<31);
+        System.out.println(1<<32);
+        System.out.println(1<<33);
+        System.out.println(1<<34);
     }
 }

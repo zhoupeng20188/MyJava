@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.asearch;
 
 import java.util.ArrayList;
 import java.util.List;

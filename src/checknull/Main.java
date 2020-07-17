@@ -8,6 +8,10 @@ import java.util.Objects;
  */
 public class Main {
     public static void main(String[] args) {
+        Boolean b = null;
+        if(b!=null && b){
+            System.out.println("dd");
+        }
         new Main().test(null);
     }
     private void test(String a){

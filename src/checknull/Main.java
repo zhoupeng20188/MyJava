@@ -1,21 +1,19 @@
-package checknull;
+package checkNull;
 
 import java.util.Objects;
 
 /**
- * @Author zp
- * @create 2020/6/12 16:59
+ * @Author zhoupeng
+ * @Date 2020-05-09 11:55
  */
 public class Main {
     public static void main(String[] args) {
-        Boolean b = null;
-        if(b!=null && b){
-            System.out.println("dd");
-        }
-        new Main().test(null);
+        System.out.println(new Main().add(1, 3));
+        new Main().add(null, null);
     }
-    private void test(String a){
-        Objects.requireNonNull(a,"a can't be null!");
-        System.out.println(a);
+    private int add(Integer a, Integer b){
+        int aa = Objects.requireNonNull(a, "a不能为空");
+        int bb = Objects.requireNonNull(b, "b不能为空");
+        return aa + bb;
     }
 }

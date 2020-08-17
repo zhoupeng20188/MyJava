@@ -18,7 +18,7 @@ public class MinorGCTest {
         a2 = new byte[2 * _1MB];
         a3 = new byte[2 * _1MB];
         // 由于Eden区只有8M，上面的a1,a2,a3已经占了6M，所以a4需要4M空间不够，发生一次MinorGC
-        // 这时发现a1,a2,a3没有需要回收的，而Survivor只有1M，装不下，所以都移动到老年代，所以GC的结果中老年代占4M
+        // 这时发现a1,a2,a3没有需要回收的，而Survivor只有1M，装不下，所以都移动到老年代，所以GC的结果中老年代占6M
         // 新生代空出来后，放入a4,也就是占4M
         a4 = new byte[5 * _1MB]; // 出现一次Minor GC
     }

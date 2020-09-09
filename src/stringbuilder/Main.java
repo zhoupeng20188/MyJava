@@ -4,7 +4,7 @@ package stringbuilder;
  * @Author zhoupeng
  * @Date 2020-05-09 12:05
  */
-public class Main {
+public class  Main {
     public static void main(String[] args) {
         long at = System.currentTimeMillis();
         String a= "dff";

@@ -47,20 +47,24 @@ public class LRUCache {
     private void addToTail(DLinkedNode node) {
         DLinkedNode prev = tail.prev;
         prev.next = node;
-        node.next = tail;
         node.prev = prev;
         tail.prev = node;
+        node.next = tail;
     }
 
     private void moveToTail(DLinkedNode node) {
         DLinkedNode prev = node.prev;
         DLinkedNode next = node.next;
-        prev.next = next;
-        next.prev = prev;
         DLinkedNode tailPrev = tail.prev;
-        tailPrev.next = node;
-        node.prev = tailPrev;
-        node.next = tail;
+        if(tailPrev != node){
+            // 该node不在末尾时才移动
+            prev.next = next;
+            next.prev = prev;
+            tailPrev.next = node;
+            node.prev = tailPrev;
+            node.next = tail;
+            tail.prev = node;
+        }
 
     }
 
@@ -92,7 +96,13 @@ public class LRUCache {
         // 删除hash表中其对应的key
         map.remove(next.key);
         DLinkedNode nextNext = head.next.next;
-        head.next = nextNext;
-        nextNext.prev = head;
+        if(nextNext == null){
+            // 表明只有1个元素，删除后变成初始状态
+            head.next = tail;
+            tail.prev = head;
+        } else{
+            head.next = nextNext;
+            nextNext.prev = head;
+        }
     }
 }

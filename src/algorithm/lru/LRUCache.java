@@ -8,7 +8,7 @@ import java.util.Map;
  * @create 2020/10/22 17:08
  */
 public class LRUCache {
-    class DLinkedNode{
+    class DLinkedNode {
         int key;
         int value;
         DLinkedNode prev;
@@ -16,15 +16,18 @@ public class LRUCache {
 
         public DLinkedNode() {
         }
+
         public DLinkedNode(int key, int value) {
             this.key = key;
             this.value = value;
         }
     }
+
     private Map<Integer, DLinkedNode> map = new HashMap<>();
-    private DLinkedNode head,tail;
+    private DLinkedNode head, tail;
     private int size;
     private int capacity;
+
     public LRUCache(int capacity) {
         this.capacity = capacity;
         size = 0;
@@ -36,7 +39,7 @@ public class LRUCache {
 
     public int get(int key) {
         DLinkedNode dLinkedNode = map.get(key);
-        if(dLinkedNode == null){
+        if (dLinkedNode == null) {
             return -1;
         }
         // 如果key存在，则移动到链表的末尾
@@ -56,7 +59,7 @@ public class LRUCache {
         DLinkedNode prev = node.prev;
         DLinkedNode next = node.next;
         DLinkedNode tailPrev = tail.prev;
-        if(tailPrev != node){
+        if (tailPrev != node) {
             // 该node不在末尾时才移动
             prev.next = next;
             next.prev = prev;
@@ -70,7 +73,7 @@ public class LRUCache {
 
     public void put(int key, int value) {
         DLinkedNode dLinkedNode = map.get(key);
-        if(dLinkedNode != null){
+        if (dLinkedNode != null) {
             // 如果key存在，则更新
             dLinkedNode.value = value;
             // 移动到链表末尾
@@ -81,7 +84,7 @@ public class LRUCache {
             // 放入hash表中
             map.put(key, dLinkedNode1);
             size++;
-            if(size > capacity){
+            if (size > capacity) {
                 // 如果size超出容量，则删除链表的头部节点
                 removeHead();
                 size--;
@@ -95,14 +98,9 @@ public class LRUCache {
         DLinkedNode next = head.next;
         // 删除hash表中其对应的key
         map.remove(next.key);
+
         DLinkedNode nextNext = head.next.next;
-        if(nextNext == null){
-            // 表明只有1个元素，删除后变成初始状态
-            head.next = tail;
-            tail.prev = head;
-        } else{
-            head.next = nextNext;
-            nextNext.prev = head;
-        }
+        head.next = nextNext;
+        nextNext.prev = head;
     }
 }

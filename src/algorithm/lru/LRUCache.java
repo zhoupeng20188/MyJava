@@ -53,14 +53,15 @@ public class LRUCache {
     }
 
     private void moveToTail(DLinkedNode node) {
+        DLinkedNode prev = node.prev;
         DLinkedNode next = node.next;
-        head.next = next;
-        next.prev = head;
-        DLinkedNode prev = tail.prev;
-        prev.next = node;
+        prev.next = next;
+        next.prev = prev;
+        DLinkedNode tailPrev = tail.prev;
+        tailPrev.next = node;
+        node.prev = tailPrev;
         node.next = tail;
-        node.prev = prev;
-        tail.prev = node;
+
     }
 
     public void put(int key, int value) {

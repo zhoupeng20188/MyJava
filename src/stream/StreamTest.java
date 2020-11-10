@@ -2,6 +2,7 @@ package stream;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 
@@ -24,7 +25,10 @@ public class StreamTest {
         }).get();
         // lambda表达式写法
         Integer integer1 = integers.stream().filter(i -> i < 100).map(i -> i * 2).reduce((a, b) -> a + b).get();
+        // 更简洁的写法
+        Optional<Integer> reduce = integers.stream().filter(i -> i < 100).map(i -> i * 2).reduce(Integer::sum);
         System.out.println("sum is " + integer);
         System.out.println("sum is " + integer1);
+        System.out.println("sum is " + reduce.get());
     }
 }

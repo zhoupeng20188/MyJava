@@ -15,6 +15,7 @@ public class WeakReferenceTest {
         System.out.println(m.get());
         ThreadLocal<M> mThreadLocal = new ThreadLocal<>();
         mThreadLocal.set(new M());
+        System.out.println(mThreadLocal.get());
         mThreadLocal.remove();
     }
 }

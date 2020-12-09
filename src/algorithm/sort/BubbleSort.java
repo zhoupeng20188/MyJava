@@ -1,4 +1,4 @@
-package algorithm.bubble.sort;
+package algorithm.sort;
 
 import java.util.Arrays;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
  * @Author zhoupeng
  * @Date 2020-05-14 17:21
  */
-public class Main {
+public class BubbleSort {
     public static void main(String[] args) {
         int[] test = {1, 34, 23, 5, 6, 9, 21, 33};
         // 最原始的冒泡排序

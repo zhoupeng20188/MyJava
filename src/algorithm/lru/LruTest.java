@@ -6,7 +6,7 @@ package algorithm.lru;
  */
 public class LruTest {
     public static void main(String[] args) {
-        LRUCache lruCache = new LRUCache(10);
+        LRUCache2 lruCache = new LRUCache2(10);
         lruCache.put(10,13);
         lruCache.put(3,17);
         lruCache.put(6,11);

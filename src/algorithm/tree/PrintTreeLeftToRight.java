@@ -1,10 +1,12 @@
 package algorithm.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 每次打印当前节点后，用一个队列记录该节点的左节点和右节点，再输出队列中的第一个节点。
+ * 用一个队列记录节点，每次打印队列中的节点，并把当前节点的左右节点入队。
+ *
  * @Author zp
  * @create 2020/12/22 17:21
  */
@@ -19,27 +21,32 @@ public class PrintTreeLeftToRight {
         root.right = right1;
         left1.left = left2;
         left1.right = right2;
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(root.val);
-        print(root, queue);
+        levelOrder(root);
 
 
     }
 
-    public static void print(TreeNode root, Queue<Integer> queue) {
-        if (root != null) {
-            System.out.println(queue.poll());
-            if (root.left != null){
-                queue.add(root.left.val);
-                queue.add(root.right.val);
-                print(root.left, queue);
+    public static int[] levelOrder(TreeNode root) {
+        if(root == null) return new int[0];
+        Queue<TreeNode> queue = new LinkedList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            list.add(node.val);
+            if(node.left != null) {
+                queue.add(node.left);
             }
-            if(root.right != null){
-                queue.add(root.left.val);
-                queue.add(root.right.val);
-                print(root.right, queue);
+            if(node.right != null) {
+                queue.add(node.right);
             }
         }
+        int[] result = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+            System.out.println(result[i]);
+        }
+        return result;
     }
 
     public static class TreeNode {

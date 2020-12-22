@@ -16,7 +16,7 @@ public class BuildTree {
 //        int[] inorder = {4, 7, 2, 1, 5, 3, 8, 6};
         int[] preorder = {1, 2, 3};
         int[] inorder = {3, 2, 1};
-        buildTree(preorder, inorder);
+        printTree(buildTree(preorder, inorder));
     }
 
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
@@ -65,6 +65,23 @@ public class BuildTree {
         TreeNode(int x) {
             val = x;
         }
+    }
+
+    public static void printTree(TreeNode treeNode){
+        System.out.println(treeNode.val);
+        if(treeNode.left!= null || treeNode.right!= null){
+            if(treeNode.left != null){
+                printTree(treeNode.left);
+            } else {
+                System.out.println("null");
+            }
+            if(treeNode.right != null){
+                printTree(treeNode.right);
+            } else {
+                System.out.println("null");
+            }
+        }
+
     }
 
 }

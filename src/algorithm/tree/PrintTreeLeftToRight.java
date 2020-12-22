@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
+ * 每次打印当前节点后，用一个队列记录该节点的左节点和右节点，再输出队列中的第一个节点。
  * @Author zp
  * @create 2020/12/22 17:21
  */
@@ -19,6 +20,7 @@ public class PrintTreeLeftToRight {
         left1.left = left2;
         left1.right = right2;
         Queue<Integer> queue = new LinkedList<>();
+        queue.add(root.val);
         print(root, queue);
 
 
@@ -26,12 +28,15 @@ public class PrintTreeLeftToRight {
 
     public static void print(TreeNode root, Queue<Integer> queue) {
         if (root != null) {
-            queue.add(root.val);
             System.out.println(queue.poll());
             if (root.left != null){
+                queue.add(root.left.val);
+                queue.add(root.right.val);
                 print(root.left, queue);
             }
-            if(root.left != null){
+            if(root.right != null){
+                queue.add(root.left.val);
+                queue.add(root.right.val);
                 print(root.right, queue);
             }
         }

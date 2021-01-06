@@ -19,22 +19,23 @@ public class FindMin {
     public static int findMin(int[] arr) {
         int left = 0;
         int right = arr.length - 1;
-        if (arr[right] > arr[left]) {
-            // 普通升序数组
+        if (arr[right] > arr[left] || right == left) {
+            // 普通升序数组或只有一个元素的数组
             return arr[left];
         }
         int middle = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if(left == right-1) return arr[right];
-            middle = (right - left) / 2 + left;
-            if (arr[middle] > arr[left]) {
-                // 向右查找
-                left = middle;
-            } else {
-                // 向左查找
+        while(left < right){
+            middle = (right-left)/2 + left;
+            if(arr[middle] > arr[right]){
+                // 右移
+                left = middle + 1;
+            } else if(arr[middle] < arr[right]){
+                // 左移
                 right = middle;
+            } else {
+                right--;
             }
         }
-        return -1;
+        return arr[left];
     }
 }
